@@ -1,0 +1,2 @@
+<a class="dropdown-item" href="/thread/{{$notification->data['thread']['id']}}">
+        <i class="far fa-bell"></i> {{$notification->data['user']['name']}} commented on <strong>{{$notification->data['thread']['subject']}}</strong></a>

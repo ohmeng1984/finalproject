@@ -1,0 +1,24 @@
+#createthread {
+	margin: 5px 0 14px 20px;
+}
+
+#createpost {
+	margin: 5px 0 14px 15px;
+}
+
+h4 {
+	margin-bottom: 24px;
+}
+
+#editthread{
+	margin-left: 550px;
+}
+
+.liked{
+    color:red;
+}
+
+.dp img{
+	max-width: 250px;
+ max-height: 250px;
+}
