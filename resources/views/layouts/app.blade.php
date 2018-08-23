@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Click Side') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -90,14 +90,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Click Side</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/bs4.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="{{ asset('css/all.css') }}" rel="stylesheet">
         <!-- Custom Style -->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div id="app">
@@ -106,11 +106,13 @@
         @include('inc.messages')
         @yield('content')
         </div>
+        @include('inc.footer')
 
 
     </div>
     <!-- Scripts -->
     {!! NoCaptcha::renderJs() !!}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -153,6 +155,15 @@
 //        $(function(){
   //          $('#tag').selectize();
     //      })
+        $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();   
+        });
+      
+    </script>
+    <script>
+    $(".delete").on("submit", function(){
+        return confirm("Are you sure?");
+    });
     </script>
 </body>
 </html>

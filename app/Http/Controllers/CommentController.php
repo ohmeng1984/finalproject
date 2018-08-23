@@ -14,7 +14,7 @@ class CommentController extends Controller
     {
         //Validate
         $this->validate($request, [
-                'body' => 'required',
+                'body' => 'required|max:500',
                 'cover_image' => 'image|nullable|max:1999'
         ] );
 
@@ -37,7 +37,7 @@ class CommentController extends Controller
     {
         //Validate
         $this->validate($request, [
-                'body' => 'required',
+                'body' => 'required|max:500',
                 'cover_image' => 'image|nullable|max:1999'
         ] );
 
@@ -62,12 +62,12 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        if(auth()->user()->id!==$comment->user_id)
+        if(auth()->user()->id!=$comment->user_id)
         {
             return back()->with('error', 'Not Authorized!');
         }
         $this->validate($request, [
-                'body' => 'required',
+                'body' => 'required|max:500',
         ] );
 
         $comment->update($request->all());
@@ -83,7 +83,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        if(auth()->user()->id!==$comment->user_id)
+        if(auth()->user()->id!=$comment->user_id)
         {
             return back()->with('error', 'Not Authorized!');
         }

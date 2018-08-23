@@ -12,13 +12,13 @@
                 {{csrf_field()}}
                 {{method_field('put')}}
                 <div class="form-group">
-                    <label for="subject">Subject</label>
+                    <label for="subject">Title</label>
                     <input type="text" class="form-control" name="subject" id="" placeholder="Input..."
                            value="{{$thread->subject}}">
                 </div>
 
                 <div class="form-group">
-                    <label for="tags">Tags</label>
+                    <label for="tags">Topic Category</label>
                     <select class="form-control" name="tags" id="tag">
                       @foreach($tags as $tag)
                       <option value="{{$tag->id}}">{{$tag->name}}</option>
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="thread">Thread</label>
+                    <label for="thread">Subject</label>
                     <textarea class="form-control" name="thread" id="" placeholder="Input..."> {{$thread->thread}} </textarea>
                 </div>
 

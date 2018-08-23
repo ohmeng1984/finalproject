@@ -32,13 +32,13 @@
                   id="create-thread-form">
                 {{csrf_field()}}
                 <div class="form-group">
-                    <label for="subject">Subject</label>
+                    <label for="subject">Title</label>
                     <input type="text" class="form-control" name="subject" id="" placeholder="Input..."
                            value="{{old('subject')}}">
                 </div>
 
                 <div class="form-group">
-                    <label for="tags">Tags</label>
+                    <label for="tags">Topic Category</label>
                     <select class="form-control" name="tags" id="tag">
                       @foreach($tags as $tag)
                       <option value="{{$tag->id}}">{{$tag->name}}</option>
@@ -48,15 +48,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="thread">Thread</label>
+                    <label for="thread">Subject</label>
                     <textarea class="form-control" name="thread" id="" placeholder="Input..."
                     > {{old('thread')}}</textarea>
                 </div>
 
 
-{{--                  <div class="form-group">
+                <div class="form-group">
                    {!! NoCaptcha::display() !!}
-                </div>  --}}
+                </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

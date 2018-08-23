@@ -16,7 +16,7 @@
                             <div class="col-md-8"><h4 class="mt-3 ml-2">{{$thread->subject}}</h4></div>
                             <div class="col-md-4">
 {{--                                 @if(!Auth::guest())
-                                @if(Auth::user()->id===$thread->user_id) --}}
+                                @if(Auth::user()->id==$thread->user_id) --}}
                                 @can('update', $thread)
                           <div class="btn-group mt-3 ml-5" id="createpost" >
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -63,11 +63,11 @@
                     {!! Form::open(['action' => ['CommentController@addThreadComment', $thread->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                         <div class="form-group">
                         <h4>Add Comment:</h4>
-                           {{Form::textarea('body', '', ['class' => 'form-control', 'placeholder' => 'Comment'] )}}
+                           {{Form::textarea('body', '', ['class' => 'form-control', 'placeholder' => 'Comment', 'maxlength' => '500'] )}}
                         </div>
 
                         <div class="form-group">
-                            {{Form::file('cover_image')}}
+                           <h6>Insert Image:</h6> {{Form::file('cover_image')}}
                         </div>
 
 {{--                         <div class="form-group">
@@ -79,7 +79,7 @@
 
                 </div>
                 @endif
-
+</div>
             </div>
 
 @endsection

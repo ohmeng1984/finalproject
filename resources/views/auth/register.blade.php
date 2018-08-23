@@ -66,7 +66,7 @@
                             <input id="role" type="role" class="form-control" name="role" value="user" hidden>
                     @endif
 
-
+        
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
 
@@ -80,7 +80,6 @@
                                 @endif
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
@@ -88,9 +87,18 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                      
+                        <div class="form-group">
+                          <div class="col-md-6 mt-4">
+                           {!! NoCaptcha::display() !!}
+                          </div>
+  
+                        </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
+                            <input id="cover_image" type="cover_image" class="form-control" name="cover_image" value="noimage.jpg" hidden>
+
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>

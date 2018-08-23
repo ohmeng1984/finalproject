@@ -42,10 +42,10 @@ class ThreadController extends Controller
     {
         //Validate
         $this->validate($request, [
-                'subject' => 'required',
+                'subject' => 'required|max:55',
                 'tags' => 'required',
-                'thread' => 'required',
-                /*'g-recaptcha-response' => 'required|captcha'*/
+                'thread' => 'required|max:500',
+                'g-recaptcha-response' => 'required|captcha'
         ] );
 
         //Store
@@ -103,9 +103,9 @@ class ThreadController extends Controller
         $this->authorize('update', $thread);
 
         $this->validate($request, [
-                'subject' => 'required',
+                'subject' => 'required|max:55',
                 'tags' => 'required',
-                'thread' => 'required'
+                'thread' => 'required|max:500'
         ] );
 
 

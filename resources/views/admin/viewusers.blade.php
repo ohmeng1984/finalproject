@@ -20,7 +20,7 @@
 							<tbody>
 								@forelse($users as $user)
 								<tr>
-								<td>{{$user->name}}</td>
+								<td><a href="/user/profile/{{$user->name}}" class="text-info"><b>{{$user->name}}</b></a></td>
 								<td>{{$user->email}}</td>
 								<td>{{$user->role}}</td>
 								<td>
@@ -81,7 +81,7 @@
 									</div>
 
 
-									<!-- View Users Modal-->
+									<!-- Change Password Modal-->
 									<div class="modal fade" id="password{{$user->id}}">
 										<div class="modal-dialog modal-dialog-centered">
 										<div class="modal-content">
@@ -136,7 +136,11 @@
 						</table>
 					</div>
 				</div>
+        <div class="card-footer">
+        {{$users->links()}}
+        </div> 
 			</div>
+      
 		</div>
 	</div>
 </div>

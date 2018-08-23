@@ -12,6 +12,9 @@
     <li class="nav-item">
       <a class="nav-link" href="/">Home</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('forum') }}">Forums</a>
+    </li>
     @if(Auth::guest()||Auth::user()->role=='user')
 {{--       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="/forum" id="navbardrop" data-toggle="dropdown">
@@ -24,18 +27,16 @@
           <a class="dropdown-item" href="#">Sticky Threads</a>
         </div>
       </li> --}}
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('forum') }}">Forums</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/about">About</a>
-      </li>
+
       <li class="nav-item">
         <a class="nav-link" href="/whatsnew">What's New</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/groups">Groups</a>
       </li>  
+      <li class="nav-item">
+        <a class="nav-link" href="/about">About</a>
+      </li>
     @else
       <li class="nav-item">
         <a class="nav-link" href="{{ route('adminpage') }}">Admin Dashboard</a>
@@ -54,6 +55,8 @@
       <a class="nav-link" href="{{ route('register') }}"><i class="fas fa-user-plus"></i> Register</a>
     </li>
     @else
+    
+    @if(Auth::user()->role=='user')
     <li class="nav-item dropdown pr-1">
       <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" onclick="markAsRead({{count(auth()->user()->unreadNotifications)}})">
         <i class="far fa-bell"></i> Notifications <span class="badge badge-light">{{count(auth()->user()->unreadNotifications)}}</span>
@@ -67,14 +70,18 @@
       @endforelse
       </div>
     </li>
-
+    @endif
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
         {{ Auth::user()->name }} <span class="caret"></span>
       </a>
       <div class="dropdown-menu">
       <a class="dropdown-item" href="/user/profile/{{Auth::user()->name}}">
+        @if(Auth::user()->role=='user')
         <i class="fas fa-user-tie"></i> User Profile</a>
+        @else
+        <i class="fas fa-user-tie"></i> Admin Profile</a>
+        @endif
       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
         <i class="fas fa-sign-out-alt"></i> Logout</a>
       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -85,8 +92,8 @@
     @endguest
   </ul>
 
-  <form class="form-inline" action="/action_page.php">
-    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+  <form class="form-inline" action="{{ route('search') }}" method="GET">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search" required>
     <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
   </form>
 

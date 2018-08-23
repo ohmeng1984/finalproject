@@ -32,18 +32,20 @@ class HomeController extends Controller
         $threads=DB::table('threads')
             ->join('users', 'threads.user_id', '=', 'users.id')
             ->select('threads.*', 'users.name as name')
-            ->get();
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
         $comments=DB::table('comments')
             ->join('threads', 'comments.commentable_id', '=', 'threads.id')
             ->join('users', 'comments.user_id', '=', 'users.id')
             ->select('comments.*', 'threads.subject as title', 'users.name as name')
-            ->get();
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
         return view('admin', compact('tags', 'threads', 'comments'));
     }
 
     public function viewusers()
     {
-        $users=User::all();
+        $users=User::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.viewusers', compact('users'));
     }
 
@@ -61,7 +63,7 @@ class HomeController extends Controller
 
         $tags->save();
         //Redirect
-        return redirect('admin/routes')->with('success', 'Tag Added');
+        return redirect('admin/routes')->with('success', 'Topic Added');
     }
 
     /**
@@ -130,7 +132,7 @@ class HomeController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255',
             'role' => 'required|string|max:10'
         ] );
 

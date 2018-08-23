@@ -16,7 +16,7 @@ Route::get('/forum', 'MainController@index')->name('forum');
 Route::get('/about','MainController@about')->name('about');
 Route::get('/whatsnew','MainController@whatsnew')->name('whatsnew');
 Route::get('/groups','MainController@groups')->name('groups');
-
+Route::get('search','MainController@search')->name('search');
 
 
 Route::resource('/thread', 'ThreadController');
@@ -31,6 +31,9 @@ Auth::routes();
 Route::post('comment/like', 'LikeController@toggleLike')->name('toggleLike');
 
 Route::get('/user/profile/{user}', 'UserProfileController@index')->name('user_profile');
+Route::put('/user/profile/{id}', 'UserProfileController@userprofileupdate')->name('userprofileupdate');
+Route::put('/user/profilepicture/{id}', 'UserProfileController@updateprofilepicture')->name('updateprofilepicture');
+Route::put('/user/profile/password/{id}', 'UserProfileController@passwordupdate')->name('userprofilepasswordupdate');
 
 Route::get('/markAsRead', function(){
 	auth()->user()->unreadNotifications->markAsRead();
@@ -46,3 +49,4 @@ Route::get('admin/routes/topic/', 'HomeController@addtopic')->name('addtopic');
 Route::delete('admin/routes/topic/{id}', 'HomeController@deletetopic')->name('deletetopic');
 Route::delete('admin/routes/threads/{id}', 'HomeController@destroythread')->name('destroythread');
 Route::delete('admin/routes/comments/{id}', 'HomeController@destroycomment')->name('destroycomment');
+

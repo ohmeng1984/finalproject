@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -61,7 +62,9 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'role' => 'required|string|max:10'
+            'role' => 'required|string|max:10',
+            'g-recaptcha-response' => 'required|captcha',
+            'cover_image' => 'nullable|string'
         ]);
     }
 
@@ -73,11 +76,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+      
+//$send = array('name'=>$data['name'], 'title'=>'Registration Complete', "content" => "Thanks for registering an account on Click Side! We hope you enjoy your stay.");
+  
+//Mail::send('emails.mail', $send, function($message) use ($data) {
+  //  $message->to($data['email'], $data['name'])
+    //        ->subject('Click Side Registration Confirmed');
+//    $message->from('rommel.petilo@gmail.com','Admin');
+//});    
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'role' => $data['role']
+            'role' => $data['role'],
+            'cover_image' => $data['cover_image'],
         ]);
+      
+
+      
     }
 }

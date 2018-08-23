@@ -151,7 +151,7 @@
             </table>
           </div>
 
-
+{{$comments->links()}}
 
                       </div>
 
